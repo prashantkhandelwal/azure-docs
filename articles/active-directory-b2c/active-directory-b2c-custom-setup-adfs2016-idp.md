@@ -1,20 +1,16 @@
-﻿---
-title: 'Azure Active Directory B2C: Add ADFS as a SAML identity provider using custom policies'
+---
+title: Add ADFS as a SAML identity provider using custom policies in Azure Active Directory B2C | Microsoft Docs
 description: A How-To article on setting up ADFS 2016 using SAML protocol and custom policies
 services: active-directory-b2c
-documentationcenter: ''
-author: yoelhor
-manager: joroja
-editor: 
+author: davidmu1
+manager: mtillman
 
-ms.assetid:
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.tgt_pltfrm: na
-ms.topic: article
-ms.devlang: na
+ms.topic: conceptual
 ms.date: 08/04/2017
-ms.author: yoelh
+ms.author: davidmu
+ms.component: B2C
 ---
 
 # Azure Active Directory B2C: Add ADFS as a SAML identity provider using custom policies
@@ -150,8 +146,10 @@ Define ADFS as a claims provider, by adding `<ClaimsProvider>` node in your exte
 
 ## Register the ADFS account claims provider to Sign up or Sign in user journey
 At this point, the identity provider has been set up.  However, it is not available in any of the sign-up/sign-in screens. Now you need to add the ADFS account identity provider to your user `SignUpOrSignIn` user journey. To make it available, we create a duplicate of an existing template user journey.  Then, we modify it so it includes the ADFS identity provider:
-    >[!NOTE]
-    >If you previously copied the `<UserJourneys>` element from base file of your policy to the extension file (TrustFrameworkExtensions.xml) you can skip this section.
+
+>[!NOTE]
+>If you previously copied the `<UserJourneys>` element from base file of your policy to the extension file (TrustFrameworkExtensions.xml) you can skip this section.
+
 1.  Open the base file of your policy (for example, TrustFrameworkBase.xml).
 2.  Find the `<UserJourneys>` element and copy the entire content of `<UserJourneys>` node.
 3.  Open the extension file (for example, TrustFrameworkExtensions.xml) and find the `<UserJourneys>` element. If the element doesn't exist, add one.

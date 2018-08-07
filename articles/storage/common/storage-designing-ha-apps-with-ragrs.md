@@ -1,46 +1,39 @@
 ---
 title: Designing Highly Available Applications using Azure Read-Access Geo-Redundant Storage (RA-GRS) | Microsoft Docs
-description: How to use Azure RA-GRS storage to architect a highly available application flexible enough to handle outages. 
+description: How to use Azure RA-GRS storage to architect a highly available application flexible enough to handle outages.
 services: storage
-documentationcenter: .net
 author: tamram
-manager: timlt
-editor: tysonn
-
-ms.assetid: 8f040b0f-8926-4831-ac07-79f646f31926
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 9/06/2017
+ms.date: 03/21/2018
 ms.author: tamram
-
+ms.component: common
 ---
 # Designing Highly Available Applications using RA-GRS
 
 A common feature of cloud-based infrastructures like Azure Storage is that they provide a highly available platform for hosting applications. Developers of cloud-based applications must consider carefully how to leverage this platform to deliver highly available applications to their users. This article focuses on how developers can use Read Access Geo-Redundant Storage (RA-GRS) to ensure that their Azure Storage applications are highly available.
 
-Azure Storage offers four choices for redundancy for data in your storage account:
+[!INCLUDE [storage-common-redundancy-options](../../../includes/storage-common-redundancy-options.md)]
 
-– LRS (Locally Refdundant Storage)
-- ZRS (Zone Redundant Storage) 
-- GRS (Geo-Redundant Storage)
-- RA-GRS (Read Access Geo-Redundant Storage). 
+This article focuses on GRS and RA-GRS. With GRS, three copies of your data are kept in the primary region you selected when setting up the storage account. Three additional copies are maintained asynchronously in a secondary region specified by Azure. RA-GRS offers geo-redundant storage with read access to the secondary copy.
 
-This article focuses on GRS and RA-GRS. With GRS, three copies of your data are kept in the primary region you selected when setting up the storage account. Three additional copies are maintained asynchronously in a secondary region specified by Azure. RA-GRS is the same thing as GRS except that you have read access to the secondary copy. For more information about the different Azure Storage redundancy options, see [Azure Storage replication](https://docs.microsoft.com/azure/storage/storage-redundancy). The replication article also shows the pairings of the primary and secondary regions.
+For information about which primary regions are paired with which secondary regions, see [Business continuity and disaster recovery (BCDR): Azure Paired Regions](https://docs.microsoft.com/azure/best-practices-availability-paired-regions).
 
 There are code snippets included in this article, and a link to a complete sample at the end that you can download and run.
 
+> [!NOTE]
+> Azure Storage now supports zone-redundant storage (ZRS) for building highly available applications. ZRS offers a simple solution for the redundancy needs of many applications. ZRS provides protection from hardware failures or catastrophic disasters affecting a single datacenter. For more information, see [Zone-redundant storage (ZRS): Highly available Azure Storage applications](storage-redundancy-zrs.md).
+
 ## Key features of RA-GRS
 
-Keep in mind these key points when designing your ppplication for RA-GRS:
+Keep in mind these key points when designing your application for RA-GRS:
 
 * Azure Storage maintains a read-only copy of the data you store in your primary region in a secondary region. As noted above, the storage service determines the location of the secondary region.
 
 * The read-only copy is [eventually consistent](https://en.wikipedia.org/wiki/Eventual_consistency) with the data in the primary region.
 
-* For blobs, tables, and queues, you can query the secondary region for a *Last Sync Time* value that tells you when the last replication from the primary to the secondary region occurred. (This is not supported for Azure File storage, which doesn't have RA-GRS redundancy at this time.)
+* For blobs, tables, and queues, you can query the secondary region for a *Last Sync Time* value that tells you when the last replication from the primary to the secondary region occurred. (This is not supported for Azure Files, which doesn't have RA-GRS redundancy at this time.)
 
 * You can use the Storage Client Library to interact with the data in either the primary or secondary region. You can also redirect read requests automatically to the secondary region if a read request to the primary region times out.
 

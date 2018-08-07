@@ -9,11 +9,11 @@ editor: ''
 
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 9/12/2017
-ms.author: dekapur;maburlik;chackdan
+ms.author: dekapur
 
 ---
 
@@ -47,11 +47,11 @@ When you specify UDs in ClusterConfig.json, you can choose the name for each UD.
 
 For more detailed information on FDs and UDs, see [Describing a Service Fabric cluster](service-fabric-cluster-resource-manager-cluster-description.md).
 
-A cluster in production should span at least three FDs in order to be supported in a production environment, if you have full control over the maintenance and management of the nodes, i.e. you are responsible for updating and replacing machines. For clusters running in environments (i.e. Amazon Web Services VM instances) where you do not have full control over the machines, you should have a minimum of five FDs in your cluster. Each FD can have one or more nodes. This is to prevent issues caused by machine upgrades and updates which, depending on their timing, can intefere with the running of applications and services in clusters.
+A cluster in production should span at least three FDs in order to be supported in a production environment, if you have full control over the maintenance and management of the nodes, that is, you are responsible for updating and replacing machines. For clusters running in environments (that is, Amazon Web Services VM instances) where you do not have full control over the machines, you should have a minimum of five FDs in your cluster. Each FD can have one or more nodes. This is to prevent issues caused by machine upgrades and updates, which depending on their timing, can interfere with the running of applications and services in clusters.
 
 ## Determine the initial cluster size
 
-Generally, the number of nodes in your cluster is determined based on your business needs, i.e., how many services and containers will be running on the cluster and how many resources do you need to sustain your workloads. For production clusters, we recommend having at least 5 nodes in your cluster, spanning 5 FDs. However, as described above, if you have full control over your nodes and can span three FDs, then three nodes should also do the job.
+Generally, the number of nodes in your cluster is determined based on your business needs, that is, how many services and containers will be running on the cluster and how many resources do you need to sustain your workloads. For production clusters, we recommend having at least five nodes in your cluster, spanning 5 FDs. However, as described above, if you have full control over your nodes and can span three FDs, then three nodes should also do the job.
 
 Test clusters running stateful workloads should have three nodes, whereas test clusters only running stateless workloads only need one node. It should also be noted that for development purposes, you can have more than one node on a given machine. In a production environment however, Service Fabric supports only one node per physical or virtual machine.
 
@@ -91,13 +91,13 @@ After the cluster configuration has had all settings configured to the environme
 
 ## Environment setup
 
-When a cluster administrator configures a Service Fabric standalone cluster, the environment is needs to be set up with the following criteria: <br>
+When a cluster administrator configures a Service Fabric standalone cluster, the environment needs to be set up with the following criteria: <br>
 1. The user creating the cluster should have administrator-level security privileges to all machines that are listed as nodes in the cluster configuration file.
 2. Machine from which the cluster is created, as well as each cluster node machine must:
 * Have Service Fabric SDK uninstalled
 * Have Service Fabric runtime uninstalled 
 * Have the Windows Firewall service (mpssvc) enabled
-* Have the Remote Registry Service (remoteregistry) enabled
+* Have the Remote Registry Service (remote registry) enabled
 * Have file sharing (SMB) enabled
 * Have necessary ports opened, based on cluster configuration ports
 * Have necessary ports opened for Windows SMB and Remote Registry service: 135, 137, 138, 139, and 445
@@ -111,7 +111,7 @@ When a cluster administrator configures a Service Fabric standalone cluster, the
 * Disable automatic Fabric version downloading & notifications that the current cluster version is nearing end of support:
     Under *properties* set
     *"fabricClusterAutoupgradeEnabled": false*
-* Alternatively if network internet access is limited to white-listed domains, the domains below are required for automatic upgrade:
+* Alternatively, if network internet access is limited to white-listed domains, the domains below are required for automatic upgrade:
     go.microsoft.com
     download.microsoft.com
 
@@ -165,7 +165,7 @@ Passed                     : True
 Currently this configuration testing module does not validate the security configuration so this has to be done independently.  
 
 > [!NOTE]
-> We are continually making improvements to make this module more robust, so if there is a faulty or missing case which you believe isn't currently caught by TestConfiguration, please let us know through our [support channels](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support).   
+> We are continually making improvements to make this module more robust, so if there is a faulty or missing case which you believe isn't currently caught by TestConfiguration, please let us know through our [support channels](https://docs.microsoft.com/azure/service-fabric/service-fabric-support).   
 > 
 > 
 

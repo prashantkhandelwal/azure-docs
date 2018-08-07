@@ -13,8 +13,8 @@ ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 08/30/2017
+ms.topic: conceptual
+ms.date: 05/11/2018
 ms.author: genli
 ms.custom: H1Hack27Feb2017
 ---
@@ -24,7 +24,7 @@ The email address in the Account Administrator’s profile is used by Microsoft 
 
 ## How to change your profile information
 
-1. Sign in to the [Azure Account Center](https://account.windowsazure.com/) as the account administrator and then click **Profile**. 
+1. Sign in to the [Azure Account Center](https://account.azure.com/Profile).
 1. Select the **Edit details** button, and then update the **Profile** information.
 
    ![profile](./media/billing-how-to-change-azure-account-profile/profile.png)

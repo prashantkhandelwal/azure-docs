@@ -4,16 +4,16 @@ description: Import static data to join with app telemetry, or import a separate
 services: application-insights
 keywords: "open schema, data import"
 documentationcenter: ''
-author: CFreemanwa
+author: mrbullwinkle
 manager: carmonm
 
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 03/20/2017
-ms.author: bwren
+ms.topic: conceptual
+ms.date: 10/04/2017
+ms.author: mbullwin
 
 ---
 # Import data into Analytics
@@ -112,15 +112,16 @@ JSON format
 ]
 ```
  
-Each column is identified by the location, name and type. 
+Each column is identified by the location, name and type.
 
 * Location – For delimited file format it is the position of the mapped value. For JSON format, it is the jpath of the mapped key.
 * Name – the displayed name of the column.
 * Type – the data type of that column.
  
-In case a sample data was used and file format is delimited, the schema definition must map all columns and add new columns at the end. 
-
-JSON allows partial mapping of the data, therefore the schema definition of JSON format doesn’t have to map every key which is found in a sample data. It can also map columns which are not part of the sample data. 
+> [!NOTE]
+> In case sample data was used and the file format is delimited, the schema definition must map all columns and add new columns at the end.
+> 
+> JSON allows partial mapping of the data, therefore the schema definition with a JSON format doesn’t have to map every key which is found in the sample data. It can also map columns which are not part of the sample data. 
 
 ## Import data
 
@@ -193,7 +194,7 @@ This code uses the [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.J
 
 ### Classes
 
-```C#
+```csharp
 namespace IngestionClient 
 { 
     using System; 
@@ -352,7 +353,7 @@ namespace IngestionClient
 
 Use this code for each blob. 
 
-```C#
+```csharp
    AnalyticsDataSourceClient client = new AnalyticsDataSourceClient(); 
 
    var ingestionRequest = new AnalyticsDataSourceIngestionRequest("iKey", "sourceId", "blobUrlWithSas"); 
@@ -363,4 +364,4 @@ Use this code for each blob.
 ## Next steps
 
 * [Tour of the Log Analytics query language](app-insights-analytics-tour.md)
-* [Use *Logstash* to send data to Application Insights](https://github.com/Microsoft/logstash-output-application-insights)
+* If you're using Logstash, use the [Logstash plugin to send data to Application Insights](https://github.com/Microsoft/logstash-output-application-insights)

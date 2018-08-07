@@ -1,22 +1,16 @@
 ---
 title: Get started with Azure IoT Hub device management (.NET/.NET) | Microsoft Docs
 description: How to use Azure IoT Hub device management to initiate a remote device reboot. You use the Azure IoT device SDK for .NET to implement a simulated device app that includes a direct method and the Azure IoT service SDK for .NET to implement a service app that invokes the direct method.
-services: iot-hub
-documentationcenter: .net
-author: JimacoMS2
+author: dominicbetts
 manager: timlt
-editor: ''
-
-ms.assetid: 
 ms.service: iot-hub
-ms.devlang: dotnet
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.devlang: csharp
+ms.topic: conceptual
 ms.date: 09/15/2017
-ms.author: v-jamebr
-
+ms.author: dobett
 ---
+
 # Get started with device management (.NET/.NET)
 
 [!INCLUDE [iot-hub-selector-dm-getstarted](../../includes/iot-hub-selector-dm-getstarted.md)]
@@ -58,12 +52,12 @@ In this section, you create a .NET console app (using C#) that initiates a remot
         using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Shared;
         
-5. Add the following fields to the **Program** class. Replace the placeholder value with the IoT Hub connection string for the hub that you created in the previous section and the target device.
+5. Add the following fields to the **Program** class. Replace the placeholder value with the IoT Hub connection string for the hub that you created in the section "Create an IoT hub." 
    
         static RegistryManager registryManager;
         static string connString = "{iot hub connection string}";
         static ServiceClient client;
-        static string targetDevice = "{deviceIdForTargetDevice}";
+        static string targetDevice = "myDeviceId";
         
 6. Add the following method to the **Program** class.  This code gets the device twin for the rebooting device and outputs the reported properties.
    
@@ -134,7 +128,7 @@ In this section, you will
             {
                 Console.WriteLine("Rebooting!");
 
-                // Update device twim with reboot time. 
+                // Update device twin with reboot time. 
                 TwinCollection reportedProperties, reboot, lastReboot;
                 lastReboot = new TwinCollection();
                 reboot = new TwinCollection();
